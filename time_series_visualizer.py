@@ -8,8 +8,8 @@ register_matplotlib_converters()
 df = pd.read_csv("fcc-forum-pageviews.csv", index_col="date")
 
 # Clean data
-df = None
-
+# Clean the data by filtering out days when the page views were in the top 2.5% of the dataset or bottom 2.5% of the dataset.
+df = df.loc[(df["value"] >= df["value"].quantile(0.025)) & (df["value"] <= df["value"].quantile(1 - 0.025))]
 
 def draw_line_plot():
     # Draw line plot
