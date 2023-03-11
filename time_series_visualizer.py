@@ -5,7 +5,7 @@ from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 
 # Import data (Make sure to parse dates. Consider setting index column to 'date'.)
-df = pd.read_csv("fcc-forum-pageviews.csv", index_col="date")
+df = pd.read_csv("fcc-forum-pageviews.csv", index_col="date", parse_dates=True)
 
 # Clean data
 # Clean the data by filtering out days when the page views were in the top 2.5% of the dataset or bottom 2.5% of the dataset.
@@ -16,9 +16,9 @@ def draw_line_plot():
     # "examples/Figure_1.png". The title should be Daily freeCodeCamp Forum Page Views 5/2016-12/2019. The label on
     # the x-axis should be Date and the label on the y-axis should be Page Views.
 
-    fig = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(10, 5))
 
-    fig.plot(df.index, df['value'], 'r--', linewidth=1)
+    ax.plot(df.index, df.value, 'r', linewidth=1)
 
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
