@@ -12,11 +12,15 @@ df = pd.read_csv("fcc-forum-pageviews.csv", index_col="date")
 df = df.loc[(df["value"] >= df["value"].quantile(0.025)) & (df["value"] <= df["value"].quantile(1 - 0.025))]
 
 def draw_line_plot():
-    # Draw line plot
+    # Draw line plot. Create a draw_line_plot function that uses Matplotlib to draw a line chart similar to
+    # "examples/Figure_1.png". The title should be Daily freeCodeCamp Forum Page Views 5/2016-12/2019. The label on
+    # the x-axis should be Date and the label on the y-axis should be Page Views.
 
+    fig = plt.subplots(figsize=(10, 5))
 
+    fig.plot(df.index, df['value'], 'r--', linewidth=1)
 
-
+    fig.set_title('Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
 
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
@@ -28,6 +32,7 @@ def draw_bar_plot():
 
     # Draw bar plot
 
+    fig = plt.subplots()
 
 
 
@@ -45,7 +50,7 @@ def draw_box_plot():
 
     # Draw box plots (using Seaborn)
 
-
+    fig = plt.subplots()
 
 
 
