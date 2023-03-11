@@ -20,8 +20,6 @@ def draw_line_plot():
 
     fig.plot(df.index, df['value'], 'r--', linewidth=1)
 
-    fig.set_title('Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
-
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
