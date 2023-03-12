@@ -29,11 +29,15 @@ def draw_line_plot():
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = df.copy()
 
     # Draw bar plot
+    # Create a draw_bar_plot function that draws a bar chart similar to "examples/Figure_2.png". It
+    # should show average daily page views for each month grouped by year. The legend should show month labels and
+    # have a title of Months. On the chart, the label on the x-axis should be Years and the label on the y-axis
+    # should be Average Page Views.
 
-    fig = plt.subplots()
+    fig, ax = plt.subplots()
 
 
 
