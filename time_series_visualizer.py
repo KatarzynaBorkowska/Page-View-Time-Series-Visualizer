@@ -32,6 +32,7 @@ def draw_bar_plot():
     df_bar = df.copy()
     df_bar["Year"] = df_bar.index.year
     df_bar['Month'] = df_bar.index.month_name()
+    df_bar = pd.DataFrame(df_bar.groupby(['Year', 'Month'], sort=False)["value"].mean())
     print(df_bar)
 
     # Draw bar plot
