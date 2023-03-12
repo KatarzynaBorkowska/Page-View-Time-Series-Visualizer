@@ -34,7 +34,7 @@ def draw_bar_plot():
     df_bar['Month'] = df_bar.index.month_name()
     df_bar = pd.DataFrame(df_bar.groupby(['Year', 'Month'], sort=False)["value"].mean())
     df_bar = df_bar.rename(columns={"value": "Average Page Views"})
-
+    df_bar = df_bar.reset_index()
     print(df_bar)
 
     # Draw bar plot
@@ -43,10 +43,11 @@ def draw_bar_plot():
     # have a title of Months. On the chart, the label on the x-axis should be Years and the label on the y-axis
     # should be Average Page Views.
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(15, 5))
+    ax.set_title("Daily freeCodeCamp Forum Average Page Views per Month")
+    ax1 = sns.barplot(data=df_bar, x='Year', y='Average Page Views', hue='Month')
 
-
-
+    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=90, horizontalalignment='center')
 
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
