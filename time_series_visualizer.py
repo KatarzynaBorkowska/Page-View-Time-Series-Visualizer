@@ -33,6 +33,8 @@ def draw_bar_plot():
     df_bar["Year"] = df_bar.index.year
     df_bar['Month'] = df_bar.index.month_name()
     df_bar = pd.DataFrame(df_bar.groupby(['Year', 'Month'], sort=False)["value"].mean())
+    df_bar = df_bar.rename(columns={"value": "Average Page Views"})
+
     print(df_bar)
 
     # Draw bar plot
