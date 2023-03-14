@@ -65,6 +65,12 @@ def draw_box_plot():
 
     # Draw box plots (using Seaborn)
 
+    # Create a draw_box_plot function that uses Seaborn to draw two adjacent box plots similar to
+    # "examples/Figure_3.png". These box plots should show how the values are distributed within a given year or
+    # month and how it compares over time. The title of the first chart should be Year-wise Box Plot (Trend) and the
+    # title of the second chart should be Month-wise Box Plot (Seasonality). Make sure the month labels on bottom
+    # start at Jan and the x and y axis are labeled correctly. The boilerplate includes commands to prepare the data.
+
     fig = plt.subplots()
 
 
