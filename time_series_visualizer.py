@@ -71,11 +71,16 @@ def draw_box_plot():
     # title of the second chart should be Month-wise Box Plot (Seasonality). Make sure the month labels on bottom
     # start at Jan and the x and y-axis are labeled correctly. The boilerplate includes commands to prepare the data.
 
-    fig, ax = plt.subplots(nrows=1, ncols=2,figsize=(15, 5))
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(15, 5))
 
     ax[0].set_title("Year-wise Box Plot (Trend)")
     ax[1].set_title("Month-wise Box Plot (Seasonality)")
 
+    month_order = ['January', 'February', 'March', 'April', 'May', 'June',
+                   'July', 'August', 'September', 'October', 'November', 'December']
+
+    ax[0] = sns.boxplot(x=df_box['year'], y=df_box['value'], ax=ax[0])
+    ax[1] = sns.boxplot(x=df_box['month'], y=df_box['value'], ax=ax[1])
 
 
     # Save image and return fig (don't change this part)
