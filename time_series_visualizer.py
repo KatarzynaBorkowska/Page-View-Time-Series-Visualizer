@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from pandas.plotting import register_matplotlib_converters
+
 register_matplotlib_converters()
 
 # Import data (Make sure to parse dates. Consider setting index column to 'date'.)
@@ -10,6 +11,7 @@ df = pd.read_csv("fcc-forum-pageviews.csv", index_col="date", parse_dates=True)
 # Clean data
 # Clean the data by filtering out days when the page views were in the top 2.5% of the dataset or bottom 2.5% of the dataset.
 df = df.loc[(df["value"] >= df["value"].quantile(0.025)) & (df["value"] <= df["value"].quantile(1 - 0.025))]
+
 
 def draw_line_plot():
     # Draw line plot. Create a draw_line_plot function that uses Matplotlib to draw a line chart similar to
@@ -27,6 +29,7 @@ def draw_line_plot():
     fig.savefig('line_plot.png')
     return fig
 
+
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
     df_bar = df.copy()
@@ -38,7 +41,6 @@ def draw_bar_plot():
     month_order = ['January', 'February', 'March', 'April', 'May', 'June',
                    'July', 'August', 'September', 'October', 'November', 'December']
     df_bar['Month'] = pd.Categorical(df_bar['Month'], categories=month_order, ordered=True)
-    print(df_bar)
 
     # Draw bar plot
     # Create a draw_bar_plot function that draws a bar chart similar to "examples/Figure_2.png". It
@@ -56,6 +58,7 @@ def draw_bar_plot():
     fig.savefig('bar_plot.png')
     return fig
 
+
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
     df_box = df.copy()
@@ -71,17 +74,19 @@ def draw_box_plot():
     # title of the second chart should be Month-wise Box Plot (Seasonality). Make sure the month labels on bottom
     # start at Jan and the x and y-axis are labeled correctly. The boilerplate includes commands to prepare the data.
 
-    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(15, 5))
+    df_box["month_number"] = df_box["date"].dt.month
+    df_box = df_box.sort_values("month_number")
+
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(25, 10))
 
     ax[0].set_title("Year-wise Box Plot (Trend)")
     ax[1].set_title("Month-wise Box Plot (Seasonality)")
 
-    month_order = ['January', 'February', 'March', 'April', 'May', 'June',
-                   'July', 'August', 'September', 'October', 'November', 'December']
-
     ax[0] = sns.boxplot(x=df_box['year'], y=df_box['value'], ax=ax[0])
     ax[1] = sns.boxplot(x=df_box['month'], y=df_box['value'], ax=ax[1])
 
+    ax[0].set_xlabel("Year")
+    ax[1].set_xlabel("Month")
 
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
