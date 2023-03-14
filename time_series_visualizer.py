@@ -73,6 +73,9 @@ def draw_box_plot():
 
     fig, ax = plt.subplots(nrows=1, ncols=2,figsize=(15, 5))
 
+    ax[0].set_title("Year-wise Box Plot (Trend)")
+    ax[1].set_title("Month-wise Box Plot (Seasonality)")
+
 
 
     # Save image and return fig (don't change this part)
